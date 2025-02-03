@@ -1,20 +1,20 @@
 SELECT
-    t.log_id as 'é–¢é€£å…ˆ'
+    t.log_id as 'ŠÖ˜Aæ'
     , CASE t.edi_taiou 
-           WHEN '0' THEN 'å•åˆã›' 
-           WHEN '1' THEN 'å›ç­”' 
+           WHEN '0' THEN '–â‡‚¹' 
+           WHEN '1' THEN '‰ñ“š' 
            ELSE '' 
        END  
-	 as 'ä»¶å'
-    , format(t.edi_start_date,'yyyy/MM/dd') as 'ä½œæˆæ—¥'
-    , u1.lastname + ' ' + u1.firstname as 'æ—§ã‚¨ã‚¹ã‚«ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³å…ƒ'
-    , NameT.edi_to_userid_value as 'æ—§ã‚¨ã‚¹ã‚«ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³å…ˆ'
-    , t.edi_long_desc AS 'ã‚³ãƒ¡ãƒ³ãƒˆ'
-    , t.docid AS 'ã‚­ãƒ¼'
-    , u2.lastname + ' ' + u2.firstname AS 'ä½œæˆè€…'
-    , format(t.creation_ts, 'yyyy/MM/dd') AS 'ä½œæˆæ—¥'
-    , u3.lastname + ' ' + u3.firstname AS 'æ›´æ–°è€…'
-    , format(t.delta_ts, 'yyyy/MM/dd') AS 'æ›´æ–°æ—¥'
+	 as 'Œ–¼'
+    , format(t.edi_start_date,'yyyy/MM/dd') as 'ì¬“ú'
+    , u1.lastname + ' ' + u1.firstname as '‹ŒƒGƒXƒJƒŒ[ƒVƒ‡ƒ“Œ³'
+    , NameT.edi_to_userid_value as '‹ŒƒGƒXƒJƒŒ[ƒVƒ‡ƒ“æ'
+    , t.edi_long_desc AS 'ƒRƒƒ“ƒg'
+    , t.docid AS 'ƒL['
+    , u2.lastname + ' ' + u2.firstname AS 'ì¬Ò'
+    , format(t.creation_ts, 'yyyy/MM/dd') AS 'ì¬“ú'
+    , u3.lastname + ' ' + u3.firstname AS 'XVÒ'
+    , format(t.delta_ts, 'yyyy/MM/dd') AS 'XV“ú'
 FROM
     edi702_logs_taiou t 
     LEFT OUTER JOIN users u1 ON t.edi_from_userid = u1.userid 
@@ -37,4 +37,5 @@ FROM
     ) NameT ON NameT.edi_esc_taiou_key = t.docid
 	INNER JOIN logs l on l.log_id = t.log_id
 where
-t.log_id = '10606273';
+	format(l.edi_kaiketu_date,'yyyy/MM/dd') > '2017/09/31'
+order by l.edi_kaiketu_date;

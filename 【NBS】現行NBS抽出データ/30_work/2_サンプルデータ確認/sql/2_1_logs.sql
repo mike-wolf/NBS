@@ -52,4 +52,5 @@ FROM
     LEFT OUTER JOIN edi71_category_1 c1 ON c1.op_synonym = l.edi_category_1 
     LEFT OUTER JOIN edi72_category_2 c2 ON c2.op_synonym = l.edi_category_2 
 where
-   l.log_id = '10606273';
+    format(l.edi_kaiketu_date,'yyyy/MM/dd') > '2017/09/31'
+order by l.edi_kaiketu_date;
