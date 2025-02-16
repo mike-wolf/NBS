@@ -1,20 +1,20 @@
 SELECT
     t.log_id as '関連先'
-    , CASE t.edi_taiou 
+    , ISNULL(CASE t.edi_taiou 
            WHEN '0' THEN '問合せ' 
            WHEN '1' THEN '回答' 
            ELSE '' 
-       END  
+       END,'')  
 	 as '件名'
-    , format(t.edi_start_date,'yyyy/MM/dd') as '作成日'
-    , u1.lastname + ' ' + u1.firstname as '旧エスカレーション元'
-    , NameT.edi_to_userid_value as '旧エスカレーション先'
-    , t.edi_long_desc AS 'コメント'
-    , t.docid AS 'キー'
-    , u2.lastname + ' ' + u2.firstname AS '作成者'
-    , format(t.creation_ts, 'yyyy/MM/dd') AS '作成日'
-    , u3.lastname + ' ' + u3.firstname AS '更新者'
-    , format(t.delta_ts, 'yyyy/MM/dd') AS '更新日'
+    , ISNULL(format(t.edi_start_date,'yyyy/MM/dd hh:mm'),'') as '作成日'
+    , ISNULL(u1.lastname + ' ' + u1.firstname,'') as '旧エスカレーション元'
+    , ISNULL(NameT.edi_to_userid_value,'') as '旧エスカレーション先'
+    , ISNULL(t.edi_long_desc,'') AS 'コメント'
+    , ISNULL(t.docid,'') AS 'キー'
+    , ISNULL(u2.lastname + ' ' + u2.firstname,'') AS '作成者'
+    , ISNULL(format(t.creation_ts, 'yyyy/MM/dd'),'') AS '作成日'
+    , ISNULL(u3.lastname + ' ' + u3.firstname,'') AS '更新者'
+    , ISNULL(format(t.delta_ts, 'yyyy/MM/dd'),'') AS '更新日'
 FROM
     edi702_logs_taiou t 
     LEFT OUTER JOIN users u1 ON t.edi_from_userid = u1.userid 

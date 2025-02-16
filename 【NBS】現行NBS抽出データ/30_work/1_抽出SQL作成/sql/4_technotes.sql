@@ -1,16 +1,16 @@
 SELECT
     t.tan_id AS '旧解決策番号/親レコードID'
     , t.short_desc AS 'タイトル'
-    , t.edi_sub_title AS '概要'
-    , format(t.creation_ts, 'yyyy/MM/dd') AS '作成日'
-    , format(t.edi_check_date, 'yyyy/MM/dd') AS '最終更新日'
-    , u1.lastname + ' ' + u1.firstname AS '登録者'
-    , t.long_desc AS 'ナレッジ内容'
+    , ISNULL(t.edi_sub_title,'') AS '概要'
+    , ISNULL(format(t.creation_ts, 'yyyyMMdd'),'') AS '作成日'
+    , ISNULL(format(t.edi_check_date, 'yyyyMMdd'),'') AS '最終更新日'
+    , ISNULL(u1.lastname + ' ' + u1.firstname,'') AS '登録者'
+    , ISNULL(t.long_desc,'') AS 'ナレッジ内容'
     , c1.value as 'カテゴリグループ名'
-    , c2.value as 'カテゴリ名'
-    , u2.lastname + ' ' + u2.firstname AS '作成者'
-    , u3.lastname + ' ' + u3.firstname AS '更新者'
-    , format(l.delta_ts, 'yyyy/MM/dd') AS '更新日' 
+    , ISNULL(c2.value,'') as 'カテゴリ名'
+    , ISNULL(u2.lastname + ' ' + u2.firstname,'') AS '作成者'
+    , ISNULL(u3.lastname + ' ' + u3.firstname,'') AS '更新者'
+    , ISNULL(format(t.delta_ts, 'yyyyMMdd'),'') AS '更新日' 
 FROM
     technotes t 
     LEFT OUTER JOIN users u1 ON t.assigned_to = u1.userid 
