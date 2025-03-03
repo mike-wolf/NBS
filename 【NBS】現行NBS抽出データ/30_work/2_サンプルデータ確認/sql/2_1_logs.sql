@@ -1,19 +1,19 @@
 SELECT
-    l.log_id as '旧問合せ番号/リンク済みエンティティ'
+    l.log_id as '問合せ番号'
     , l.short_desc as '要約'
-    , ISNULL(c.edi_siteid,'') as '取引先名'
-    , ISNULL(j.edi_jigyousyo_cd,'') as '事業所名'
-    , ISNULL(l.edi_riyousya_cd,'') as '利用者コード'
-    , ISNULL(l.username,'') as '問合せ者'
-    , ISNULL(l.edi_logs_tel,'') as '連絡先1'
+    , ISNULL(c.edi_siteid,'') as '企業略称'
+    , ISNULL(j.edi_jigyousyo_cd,'') as '事業所ｺｰﾄﾞ'
+    , ISNULL(l.edi_riyousya_cd,'') as '利用者ｺｰﾄﾞ'
+    , ISNULL(l.username,'') as '利用者名'
+    , ISNULL(l.edi_logs_tel,'') as '連絡先'
     , ISNULL(g.value,'') as '業種別'
-    , l.log_status as 'ステータス'
-    , ISNULL(u1.lastname + ' ' + u1.firstname,'') as '作成者ID'
-    , ISNULL(format(l.edi_touroku_date,'yyyy/MM/dd HH:mm'),'') as 'オープン日時'
+    , l.log_status as 'ｽﾃｰﾀｽ'
+    , ISNULL(u1.lastname + ' ' + u1.firstname,'') as '受付者'
+    , ISNULL(format(l.edi_touroku_date,'yyyy/MM/dd HH:mm'),'') as '受付日時'
     , ISNULL(u2.lastname,'') + ' ' + ISNULL(u2.firstname,'') as '完了者'
-    , ISNULL(format(l.edi_kaiketu_date,'yyyy/MM/dd HH:mm'),'') as 'クローズ日時'
-    , c1.value as 'カテゴリ1'
-    , ISNULL(c2.value,'') as 'カテゴリ2'
+    , ISNULL(format(l.edi_kaiketu_date,'yyyy/MM/dd HH:mm'),'') as '完了日時'
+    , c1.value as 'ｶﾃｺﾞﾘ1'
+    , ISNULL(c2.value,'') as 'ｶﾃｺﾞﾘ2'
     , ISNULL(( 
         SELECT
             STRING_AGG( 
@@ -36,8 +36,8 @@ SELECT
             LEFT OUTER JOIN users u3 ON t.edi_from_userid = u3.userid
         WHERE
             t.log_id = l.log_id
-    ),'') AS '説明'
-    , ISNULL(l.edi_tennpu,'') AS 'ドキュメント'
+    ),'') AS '内容'
+    , ISNULL(l.edi_tennpu,'') AS '添付資料名'
     , ISNULL(format(l.creation_ts, 'yyyy/MM/dd'),'') AS '作成日'
     , ISNULL(u4.lastname + ' ' + u4.firstname,'') AS  '更新者'
     , ISNULL(format(l.delta_ts, 'yyyy/MM/dd'),'') AS '更新日'

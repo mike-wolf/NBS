@@ -1,15 +1,15 @@
 SELECT
-    t.log_id as '関連先'
+    t.log_id as '問合せ番号'
     , ISNULL(CASE t.edi_taiou 
            WHEN '0' THEN '問合せ' 
            WHEN '1' THEN '回答' 
            ELSE '' 
        END,'')  
-	 as '件名'
-    , ISNULL(format(t.edi_start_date,'yyyy/MM/dd hh:mm'),'') as '作成日'
-    , ISNULL(u1.lastname + ' ' + u1.firstname,'') as '旧エスカレーション元'
-    , ISNULL(NameT.edi_to_userid_value,'') as '旧エスカレーション先'
-    , ISNULL(t.edi_long_desc,'') AS 'コメント'
+	 as '対応区分'
+    , ISNULL(format(t.edi_start_date,'yyyy/MM/dd hh:mm'),'') as '対応日時'
+    , ISNULL(u1.lastname + ' ' + u1.firstname,'') as 'エスカレーション元'
+    , ISNULL(NameT.edi_to_userid_value,'') as 'エスカレーション先'
+    , ISNULL(t.edi_long_desc,'') AS '内容'
     , ISNULL(t.docid,'') AS 'キー'
     , ISNULL(u2.lastname + ' ' + u2.firstname,'') AS '作成者'
     , ISNULL(format(t.creation_ts, 'yyyy/MM/dd'),'') AS '作成日'
