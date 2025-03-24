@@ -38,5 +38,5 @@ FROM
 	INNER JOIN logs l on l.log_id = t.log_id
 where
 	format(l.edi_kaiketu_date,'yyyy/MM/dd') > '2017/09/31'
-	and format(l.edi_kaiketu_date,'yyyy/MM/dd') < 'ˆÚs“–“ú'
+	and format(l.edi_kaiketu_date,'yyyy/MM/dd') < '2021/10/01'
 order by l.edi_kaiketu_date;
