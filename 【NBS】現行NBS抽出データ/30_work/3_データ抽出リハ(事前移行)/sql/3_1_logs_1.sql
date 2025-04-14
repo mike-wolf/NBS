@@ -52,7 +52,7 @@ FROM
     LEFT OUTER JOIN edi71_category_1 c1 ON c1.op_synonym = l.edi_category_1 
     LEFT OUTER JOIN edi72_category_2 c2 ON c2.op_synonym = l.edi_category_2 
 where
-    format(l.edi_kaiketu_date,'yyyy/MM/dd') > '2017/09/31'
+    format(l.edi_kaiketu_date,'yyyy/MM/dd HH:mm:ss') >= '2017/10/01 00:00:00'
     and format(l.edi_kaiketu_date,'yyyy/MM/dd') < '2019/10/01'
     and l.edi_data_flg = 'E'
 order by l.edi_kaiketu_date;

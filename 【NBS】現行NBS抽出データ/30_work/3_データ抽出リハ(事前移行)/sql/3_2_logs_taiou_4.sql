@@ -37,7 +37,7 @@ FROM
     ) NameT ON NameT.edi_esc_taiou_key = t.docid
 	INNER JOIN logs l on l.log_id = t.log_id
 where
-	format(l.edi_kaiketu_date,'yyyy/MM/dd') > '2023/09/31'
+	format(l.edi_kaiketu_date,'yyyy/MM/dd HH:mm:ss') >= '2023/10/01 00:00:00'
 	and format(l.edi_kaiketu_date,'yyyy/MM/dd') < '2025/04/17'
 	and t.edi_data_flg = 'E'
 order by l.edi_kaiketu_date;

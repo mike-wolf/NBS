@@ -1,0 +1,1 @@
+SELECT FORMAT(SYSDATETIME(), 'yyyy/MM/dd HH:mm:ss');
