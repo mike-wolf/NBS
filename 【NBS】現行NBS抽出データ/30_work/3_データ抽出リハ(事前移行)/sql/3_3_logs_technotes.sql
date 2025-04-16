@@ -11,4 +11,4 @@ FROM
     sti_stqt_xref ssx 
     LEFT OUTER JOIN users u1 ON ssx.created_by = u1.userid 
     LEFT OUTER JOIN users u2 ON ssx.delta_sy_user = u2.userid
-order by ssx.creation_ts;
+order by ssx.log_id asc;
